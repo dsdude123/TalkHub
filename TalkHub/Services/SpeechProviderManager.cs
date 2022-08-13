@@ -12,7 +12,10 @@ namespace TalkHub.Services
 
         private static Dictionary<Guid, SpeechResponse> jobs = new Dictionary<Guid, SpeechResponse>();
 
-        private static Dictionary<string, IProviderWorker> workers = new Dictionary<string, IProviderWorker>();
+        private static Dictionary<string, IProviderWorker> workers = new Dictionary<string, IProviderWorker>
+        {
+            {"dectalk", new SharpTalkProvider() }
+        };
 
         public SpeechResponse OpenRequest(SpeechRequest request)
         {
