@@ -7,7 +7,7 @@ namespace TalkHub.Services
 
         private static readonly Dictionary<string, string> voiceProviderMapping = new Dictionary<string, string>
         {
-            { "yoda", "uberduck" }
+            { "paul", "dectalk" }
         };
 
         private static Dictionary<Guid, SpeechResponse> jobs = new Dictionary<Guid, SpeechResponse>();
@@ -34,6 +34,11 @@ namespace TalkHub.Services
             }
             return response;
 
+        }
+
+        public SpeechResponse GetRequest(Guid guid)
+        {
+            return jobs.GetValueOrDefault(guid, null);
         }
 
         private string MapToProvider(SpeechRequest request)

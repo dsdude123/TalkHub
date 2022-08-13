@@ -1,4 +1,5 @@
-﻿using TalkHub.Models;
+﻿using System.Timers;
+using TalkHub.Models;
 
 namespace TalkHub.Services
 {
@@ -6,6 +7,6 @@ namespace TalkHub.Services
     {
         public abstract void AddJob(ref SpeechResponse response);
 
-        public abstract void RunWorker();
+        public abstract void RunWorker(object source, ElapsedEventArgs e);
     }
 }
