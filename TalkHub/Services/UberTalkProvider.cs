@@ -39,7 +39,7 @@ namespace TalkHub.Services
                 {
                     job.Status = RequestStatus.QueuedAtProvider;
                     var result = client.GenerateVoiceAsync(job.TextToSpeak, job.VoiceName).Result;
-                    result.SaveAudioFileAsync($"{job.RequestId}.wav");
+                    result.SaveAudioFileAsync($"{job.RequestId}");
                     job.ProviderRequestId = result.UUID;
                     job.Status = RequestStatus.Done;
 

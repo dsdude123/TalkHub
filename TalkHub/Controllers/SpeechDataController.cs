@@ -10,7 +10,7 @@ namespace TalkHub.Controllers
         [HttpGet(Name = "SpeechData")]
         public async Task<IActionResult> GetSpeechData(Guid guid)
         {
-            string path = Environment.CurrentDirectory + "\\data\\" + guid.ToString() + ".wav";
+            string path = Environment.CurrentDirectory + "\\" + guid.ToString() + ".wav";
             if (System.IO.File.Exists(path))
             {
                 return File(System.IO.File.ReadAllBytes(path), "audio/wav");

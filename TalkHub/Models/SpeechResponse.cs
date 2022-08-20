@@ -12,8 +12,6 @@
 
         public string? ProviderRequestId { get; set; }
 
-        public Uri? DownloadLink { get; set; }
-
         public string VoiceName { get; set; }
 
         public string TextToSpeak { get; set; }
