@@ -7,14 +7,16 @@ namespace TalkHub.Services
 
         private static readonly Dictionary<string, string> voiceProviderMapping = new Dictionary<string, string>
         {
-            { "paul", "dectalk" }
+            { "paul", "dectalk" },
+            { "yoda", "uberduck" }
         };
 
         private static Dictionary<Guid, SpeechResponse> jobs = new Dictionary<Guid, SpeechResponse>();
 
         private static Dictionary<string, IProviderWorker> workers = new Dictionary<string, IProviderWorker>
         {
-            {"dectalk", new SharpTalkProvider() }
+            {"dectalk", new SharpTalkProvider() },
+            {"uberduck", new UberTalkProvider() }
         };
 
         public SpeechResponse OpenRequest(SpeechRequest request)

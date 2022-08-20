@@ -24,11 +24,14 @@ namespace TalkHub.Services
 
         public void RunWorker(object source, ElapsedEventArgs e)
         {
-            var job = workQueue.Dequeue();
-            job.ProviderRequestId = job.RequestId.ToString();
-            var process = CreateTTS(job.TextToSpeak, job.RequestId.ToString());
-            process.WaitForExit();
-            File.Move($"{Environment.CurrentDirectory}\\{job.RequestId.ToString()}.wav", $"{Environment.CurrentDirectory}\\data\\{job.RequestId.ToString()}.wav");
+            if (workQueue.Count > 0) 
+            {
+                var job = workQueue.Dequeue();
+                job.ProviderRequestId = job.RequestId.ToString();
+                var process = CreateTTS(job.TextToSpeak, job.RequestId.ToString());
+                process.WaitForExit();
+                File.Move($"{Environment.CurrentDirectory}\\{job.RequestId.ToString()}.wav", $"{Environment.CurrentDirectory}\\data\\{job.RequestId.ToString()}.wav");
+            } 
         }
 
         private Process CreateTTS(string text, string guid)
