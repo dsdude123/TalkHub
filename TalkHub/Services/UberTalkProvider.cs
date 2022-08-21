@@ -29,7 +29,7 @@ namespace TalkHub.Services
             workQueue.Enqueue(response);
         }
 
-        public void RunWorker(object source, ElapsedEventArgs e)
+        public async void RunWorker(object source, ElapsedEventArgs e)
         {
             // New job flow
             if (workQueue.Count > 0)
@@ -39,7 +39,7 @@ namespace TalkHub.Services
                 {
                     job.Status = RequestStatus.QueuedAtProvider;
                     var result = client.GenerateVoiceAsync(job.TextToSpeak, job.VoiceName).Result;
-                    result.SaveAudioFileAsync($"{job.RequestId}");
+                    await result.SaveAudioFileAsync($"{job.RequestId}");
                     job.ProviderRequestId = result.UUID;
                     job.Status = RequestStatus.Done;
 
